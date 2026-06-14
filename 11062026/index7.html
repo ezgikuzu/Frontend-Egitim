@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/5.0.4/typescript.min.js"></script>
+  </head>
+  <body class="p-6 bg-gray-100">
+    <div class="p-6 bg-white">
+        <h1 class="text-xl">Genel sınıflar</h1>
+        <div class="p-4">
+            <h2 class="text-lg">Metin Deposu</h2>
+            <input id="inp-text" class="p-1 border mr-2" type="text">
+            <button id="btn-add-text" class="mt-2 text-blue-600">Depo Ekle</button>
+            <div id="text-result" class="bg-indigo-500">Depo Boş</div>
+        </div>
+         <div class="p-4">
+            <h2 class="text-lg">Sayı Deposu</h2>
+            <input id="inp-num" class="p-1 border mr-2" type="number">
+            <button id="btn-add-num" class="mt-2 text-blue-600">Depo Ekle</button>
+            <div id="num-result" class="bg-indigo-500">Depo Boş</div>
+        </div>
+    </div>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('script[type="text/typescript"]').forEach(script => {
+          const js = window.ts.transpile(script.textContent);
+          const newScript = document.createElement('script');
+          newScript.textContent = js;
+          document.body.appendChild(newScript);
+        });
+      });
+    </script>
+
+
+
+<script type="text/typescript">
+    interface VeriDeposu:<T>{
+        ekle(eleman: T):void;
+        listele() : T[];
+    }
+
+class Depo<T> implements VeriDeposu<T>{
+    private icerik:T[]=[];
+    
+    ekle(eleman:T):void{
+        this.icerik.push(eleman);
+    }
+    listele():T[]{
+        return this.icerik;
+    }
+}
+
+const metinDeposu = new Depo<string>();
+const sayiDeposu = new Depo<number>();
+
+    const textout=document.getElementById('text-result') as HTMLDivElement;
+    const numout=document.getElementById('num-result') as HTMLDivElement;
+
+
+    document.getElementById('btn-add-text').addEventListener('click',()=>{
+        const input = document.getElementById('inp-text') as HTMLInputElement;
+        if(input.value){
+            metinDeposu.ekle(input.value);
+            textout.innerText="Depodakiler: " + metinDeposu.listele().join(', ');
+            input.value="";
+        }
+    })
+
+    document.getElementById('btn-add-num').addEventListener('click',()=>{
+        const input = document.getElementById('inp-num') as HTMLInputElement;
+        const sayi =Number(input.value);
+        if(!isNaN(sayi) && input.value !== ""){
+            sayiDeposu.ekle(sayi);
+              numout.innerText="Depodakiler: " + sayiDeposu.listele().join(', ');
+              input.value="";
+        }
+    })
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

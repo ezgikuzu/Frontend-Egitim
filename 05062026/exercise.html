@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Egzersiz: Kart Tasarla</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col items-center justify-center p-6">
+  
+  <div class="max-w-sm w-full bg-white p-4 rounded shadow mb-6">
+    <h1 class="font-bold text-slate-800 mb-1">🎯 Egzersiz: Kartı Tasarla</h1>
+    <p class="text-xs text-slate-500">1. Karta beyaz arka plan ve gölge verin.</p>
+    <p class="text-xs text-slate-500">2. Kenarları rounded-lg ile yuvarlayın.</p>
+    <p class="text-xs text-slate-500">3. İç boşluk için p-6 ekleyin.</p>
+  </div>
+
+  <div id="target-card" class="max-w-sm w-full">
+    <div class="w-full h-32 bg-blue-500 rounded mb-2 flex items-center justify-center text-white font-bold">
+      Resim Alanı
+    </div>
+    <h3 class="font-bold text-slate-800">Tailwind CSS Öğreniyorum</h3>
+    <p class="text-slate-500 text-xs mt-1">
+      Utility sınıflarını doğrudan HTML içine yazarak pratik yapın.
+    </p>
+    <div class="flex justify-between items-center mt-3 pt-2 border-t">
+      <span class="text-xs text-slate-400">Selahaddin Ç.</span>
+      <button class="bg-blue-500 text-white text-xs px-3 py-1 rounded">
+        Katıl
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-6 flex gap-4">
+    <button onclick="applyStyles()" class="bg-slate-800 text-white text-xs px-4 py-2 rounded">
+      Çözümü Uygula
+    </button>
+    <button onclick="resetStyles()" class="border text-slate-700 text-xs px-4 py-2 rounded">
+      Sıfırla
+    </button>
+  </div>
+
+  <script>
+    const card = document.getElementById('target-card');
+    function applyStyles() {
+      card.className = "max-w-sm w-full bg-white p-6 rounded-lg shadow-md";
+    }
+    function resetStyles() {
+      card.className = "max-w-sm w-full";
+    }
+  </script>
+</body>
+</html>

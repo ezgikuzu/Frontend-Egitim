@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="bilgi-formu">
+      <input type="text" name="isim" id="isim" placeholder="Adınız" />
+      <input type="text" name="soyisim" id="soyisim" placeholder="Soyadınız" />
+      <input type="tel" name="tel" id="tel" placeholder="Telefonunuz" />
+      <input type="file" name="resim" id="resim" accept="image/*" />
+      <button type="submit" id="submit">Gönder</button>
+    </form>
+
+    <div id="sonuc">
+      <h3>Girilen Bilgiler:</h3>
+      <p><strong>Ad:</strong> <span id="yaz-isim"></span></p>
+      <p><strong>Soyad:</strong> <span id="yaz-soyisim"></span></p>
+      <p><strong>Telefon:</strong> <span id="yaz-tel"></span></p>
+      <p><strong>Yüklenen Resim:</strong></p>
+      <img
+        id="onizleme-resim"
+        width="50%"
+        src=""
+        alt="Yüklenen Resim Önizlemesi"
+        style="display: none"
+      />
+    </div>
+
+    <script>
+      const form = document.getElementById("bilgi-formu");
+      const sonucDiv = document.getElementById("sonuc");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const isim = document.getElementById("isim").value;
+        const soyisim = document.getElementById("soyisim").value;
+        const tel = document.getElementById("tel").value;
+        const resimInput = document.getElementById("resim");
+
+        document.getElementById("yaz-isim").textContent = isim;
+        document.getElementById("yaz-soyisim").textContent = soyisim;
+        document.getElementById("yaz-tel").textContent = tel;
+
+        const resimDosyasi = resimInput.files[0];
+        const imgElement = document.getElementById("onizleme-resim");
+
+        if (resimDosyasi) {
+          const reader = new FileReader();
+
+          reader.onload = function (olay) {
+            imgElement.src = olay.target.result;
+            imgElement.style.display = "block";
+          };
+
+          reader.readAsDataURL(resimDosyasi);
+        } else {
+          imgElement.style.display = "none";
+        }
+
+        sonucDiv.style.display = "block";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basit Flexbox Gösterimi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 p-8 flex flex-col items-center">
+  <div class="max-w-xl w-full bg-white p-6 rounded shadow">
+    <h1 class="text-xl font-bold mb-4">Tailwind Flexbox</h1>
+    
+    <div class="flex flex-col gap-4">
+      <div>
+        <span class="text-xs text-slate-500 block mb-1">flex gap-4 (Yan yana yerleşim)</span>
+        <div class="flex gap-4 bg-slate-55 p-3 border rounded">
+          <div class="bg-blue-500 text-white p-3 rounded">Kutu 1</div>
+          <div class="bg-emerald-500 text-white p-3 rounded">Kutu 2</div>
+          <div class="bg-red-500 text-white p-3 rounded">Kutu 3</div>
+        </div>
+      </div>
+
+      <div>
+        <span class="text-xs text-slate-500 block mb-1">flex justify-between items-center (İki uca yasla)</span>
+        <div class="flex justify-between items-center bg-slate-55 p-3 border rounded">
+          <span class="font-semibold text-slate-700">Sol Taraf</span>
+          <button class="bg-slate-800 text-white px-4 py-2 rounded text-sm">Sağ Buton</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

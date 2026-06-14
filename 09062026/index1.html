@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    />
+  </head>
+  <body
+    class="bg-gray-100 text-gray-800 font-sans min-h-screen p-6 flex flex-col items-center justify-center"
+  >
+    <div>
+      <hr />
+      <div>
+        <h1>Let ve const kullanımı Aygen Anlatacak</h1>
+        <p></p>
+      </div>
+      <hr />
+
+      <div>
+        <div>
+          <h3>1.Let değişimi</h3>
+          <div>
+            <button id="btn-let-score">Skoru Arttır</button>
+            <button id="btn-let-scope">Blok Kapsam Göster</button>
+          </div>
+          <div id="let-result">Skor : Başlatılmadı</div>
+        </div>
+      </div>
+      <hr />
+
+      <div>
+        <h3>2.Const atama yapma hatası</h3>
+        <button id="btn-const-reassign">Yeniden Atama Yap</button>
+        <div id="const-result">Durum: İşlem Yapılmadı</div>
+      </div>
+      <hr />
+      <div>
+        <h3>3.Const dizi elemanı ekleme</h3>
+        <button id="btn-const-push">Eleman Ekle</button>
+        <div id="array-result">Dizi :[]</div>
+      </div>
+      <hr />
+    </div>
+    <script>
+        let skor = 10;
+        document.getElementById('btn-let-score').addEventListener('click',()=>{
+            skor=skor+5;
+        document.getElementById('let-result').innerText='Let Skor:'+skor;
+
+        })
+        document.getElementById('btn-let-scope').addEventListener('click',()=>{
+            let deger=100;
+            if(true){
+                let deger=500;
+            }
+            document.getElementById('let-result').innerText='blok dışı okunan let değeri='+deger;
+        })
+
+        document.getElementById('btn-const-reassign').addEventListener('click',()=>{
+            try{
+                const limit=100;
+                limit=200;
+
+            } catch(err){
+                document.getElementById('const-result').innerText="Hata:"+err.message;
+                console.log(err)
+            }
+        })
+        const hobiler=['kodlama'];
+        document.getElementById('array-result').innerText='Dizi Başlangıcı:'+ JSON.stringify(hobiler);
+        document.getElementById('btn-const-push').addEventListener('click',()=>{
+            hobiler.push('Grafik');
+            document.getElementById('array-result').innerText='Guncel Dizi Elemanları'+JSON.stringify(hobiler);
+        })
+
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+

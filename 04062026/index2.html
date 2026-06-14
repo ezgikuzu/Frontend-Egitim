@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Merhaba Sınıf</h1>
+    <button id="change">Değiştir</button>
+    <p id="yazi">Merhaba tekrar</p>
+    <script>
+        const buton = document.getElementById('change');
+        const yazi = document.getElementById('yazi');
+        let tiklanmasayisi = 0;
+        buton.addEventListener('click',function(){
+            tiklanmasayisi++;
+            if(tiklanmasayisi % 2 === 0){
+            yazi.textContent='Butona Tıklandı 2 4 6';
+        }else{
+            yazi.textContent='Butona Tıklandı Yeni 1 3 5';
+        }
+        });
+
+    </script>
+</body>
+</html>

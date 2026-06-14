@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=,, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    />
+  </head>
+  <body class="p-6 bg-gray-100">
+    <div class="p-6 bg-white">
+      <h1 class="text-xl font-bold">Veri akışı Zincirleme</h1>
+      <button id="btn-start" class="bg-green-200">Siparişi Detaylandır</button>
+      <div id="result" class="mt-4 whitespace-pre-line">İşlem Başlatılmadı</div>
+    </div>
+<script>
+
+    const kullaniciyiGetir=()=>{
+        return new Promise((resolve)=>{
+            setTimeout(()=>{
+                resolve({id:42,ad:'Onur',uyelik:'Standart'})
+            },2000)
+        })
+    }
+
+
+
+    const sepetiGetir=(kullanici)=>{
+        return new Promise((resolve)=>{
+            setTimeout(()=>{
+                resolve({
+                    sahip:kullanici.ad,
+                    urunler:['Akıllı Saat','Rimel']
+                })
+            },1000)
+        })
+    }
+
+    const faturaHesapla=(sepet)=>{
+        return new Promise((resolve)=>{
+            setTimeout(()=>{
+                resolve(`Müşteri:${sepet.sahip}\nÜrünler: ${sepet.urunler.join(', ')}\nFatura tutarı 2350 TL (Kargo Bedava)`)
+            },2000)
+        })
+    }
+
+    document.getElementById('btn-start').addEventListener('click',()=>{
+        const output=document.getElementById('result');
+        output.innerText='Müşteri Sorgulanıyor...';
+
+
+
+        kullaniciyiGetir().then((kullanici)=>{
+            output.innerText=`Müşteri Bulundu: ${kullanici.ad}\nSepet Aranıyor...`;
+            return sepetiGetir(kullanici);
+        }).then((sepet)=>{
+            output.innerText=`Sepet alındı:${sepet.urunler.join(', ')}\nFatura Hesaplanıyor....`;
+            return faturaHesapla(sepet);
+        }).then((faturaOzeti)=>{
+            output.innerText=faturaOzeti;
+        })
+    })
+
+
+</script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

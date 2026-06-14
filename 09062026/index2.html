@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>1.Basit Karesini alma</h3>
+        <input type="number" id="input-number" value="6">
+        <button style="border: 1px;" id="btn-calc">Hesapla</button>
+    </div>
+    <div id="calc-result">Sonuç : İşlem Yapılmadı</div>
+
+    <div>
+        <h3>2.Sayaç this Farkı</h3>
+        <div>
+            <button style="border: 1px;" id="btn-classic-timer">Klasik Sayaç</button>
+            <div id="classic-timer-display">0 (NAN)</div>
+        </div>
+        <div>
+            <button style="border: 1px;" id="btn-arrow-timer">Arrow Sayaç</button>
+            <div id="arrow-timer-display">0</div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('btn-calc').addEventListener('click',()=>{
+            const num = parseFloat(document.getElementById('input-number').value) || 0;
+            const karesi = x => x*x;
+            document.getElementById('calc-result').innerText='Karesi : '+karesi(num);
+        })
+
+        let classicId=null;
+        let arrowId=null;
+
+        document.getElementById('btn-classic-timer').addEventListener('click',()=>{
+            if(classicId) clearInterval(classicId);
+            const sayacObj={
+                sayi:0,
+                baslat(){
+                    classicId=setInterval(function(){
+                        this.sayi =(this.sayi || 0)+1;
+                        document.getElementById('classic-timer-display').innerText=this.sayi;
+                    },1000)
+                }
+            }
+            sayacObj.baslat();
+        })
+        document.getElementById('btn-arrow-timer').addEventListener('click',()=>{
+            if(arrowId) clearInterval(arrowId);
+            const sayacObj={
+                sayi:0,
+                baslat(){
+                    arrowId=setInterval(()=>{
+                        this.sayi++;
+                        document.getElementById('arrow-timer-display').innerText=this.sayi;
+                    },1000)
+                }
+            }
+             sayacObj.baslat();
+        })
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

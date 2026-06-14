@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basit Form Gösterimi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 p-8 flex justify-center">
+  <div class="max-w-sm w-full bg-white p-6 rounded shadow">
+    <h1 class="text-xl font-bold mb-4 text-slate-800">Giriş Yap</h1>
+    
+    <form class="space-y-4">
+      <div>
+        <label class="text-xs text-slate-600 block mb-1">E-posta</label>
+        <input type="email" class="w-full border p-2 rounded text-sm focus:outline-none focus:border-blue-500" placeholder="ornek@mail.com">
+      </div>
+      
+      <div>
+        <label class="text-xs text-slate-600 block mb-1">Şifre</label>
+        <input type="password" class="w-full border p-2 rounded text-sm focus:outline-none focus:border-blue-500" placeholder="******">
+      </div>
+
+      <button type="submit" class="w-full bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600">
+        Giriş Yap
+      </button>
+    </form>
+  </div>
+</body>
+</html>

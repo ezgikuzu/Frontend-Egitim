@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+
+    <title>Document</title>
+</head>
+<body class="p-6 bg-gray-100 items-center justify-center gap-3">
+    <div class="p-6 bg-white">
+        <h1 class="text-xl font-bold">Callback işleyici</h1>
+    
+    <div class="mb-4">
+        <input type="number" id="num-input" value="5" class="p-2 border">
+    </div>
+
+    <div class="space-x-2 mb-4">
+        <button id="btn-square" class="p-2 bg-blue-200">Karesini Al</button>
+        <button id="btn-double" class="p-2 bg-green-200">İki Katını Al</button>
+        <button id="btn-check" class="p-2 bg-yellow-200">Tek/Çift Kontrölü</button>
+    </div>
+    <div id="result" class="mt-4 p-2">Sonuç Gösterimi</div>
+    
+</div>
+<script>
+    const sayiIsle = (sayi,callback)=>{
+        if(sayi===''|| isNaN(sayi)){
+            return 'Lütfen geçerli bir sayı giriniz.';
+        }
+        return callback(Number(sayi));
+    }
+
+
+    const karesi = (x)=>x*x;
+    const ikiKati = (x)=>x*2;
+    const tekCift =(x)=>x % 2 === 0 ? 'Sayi Çifttir' : 'Sayı Tektir';
+
+    const input=document.getElementById('num-input');
+    const output=document.getElementById('result');
+
+    document.getElementById('btn-square').addEventListener('click',()=>{
+        const sonuc=sayiIsle(input.value,karesi);
+         output.innerText = 'Karesi : ' + sonuc;
+    })
+
+    document.getElementById('btn-double').addEventListener('click',()=>{
+        const sonuc = sayiIsle(input.value,ikiKati);
+        output.innerText='İki Katı:'+sonuc;
+    })
+
+    document.getElementById('btn-check').addEventListener('click',()=>{
+        const sonuc = sayiIsle(input.value,tekCift);
+        output.innerText='Kontrol : '+sonuc;
+    })
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
