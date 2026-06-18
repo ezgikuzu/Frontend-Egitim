@@ -1,0 +1,108 @@
+REACT STATE VE FORM YÖNETİMİ DERS NOTLARI
+
+=========================================
+SABAH BÖLÜMÜ: REACT STATE VE USESTATE HOOK'U
+=========================================
+
+1. STATE (DURUM) NEDİR VE PROPS'TAN FARKLARI?
+React'te zamanla değişebilen, bileşenin kendisine ait verileri hafızasında tutmasını sağlayan mekanizmaya "State" denir.
+Farklar:
+- Props : Bileşene dışarıdan gelen ve değiştirilemeyen salt-okunur verilerdir.
+- State : Bileşenin kendi içerisinde tanımladığı, değiştirebildiği ve güncellendiğinde bileşenin yeniden render (çizilmesini) olmasını tetikleyen dinamik verilerdir.
+
+
+2. USESTATE HOOK'UNUN KULLANIMI
+Bileşenlere durum eklemek için kullanılan fonksiyonel bir React kancasıdır (Hook).
+Yazım Şablonu:
+const [durum, setDurum] = useState(varsayilanDeger);
+- `durum`      : Değişkenin kendisidir.
+- `setDurum`   : Değişkenin değerini güncellemek için kullanılan fonksiyondur. Arayüz güncellemelerini tetikler.
+
+
+3. NESNE (OBJECT) STATE YÖNETİMİ VE SPREAD OPERATÖRÜ
+Eğer state bir nesne (object) ise, nesnenin sadece tek bir alanını güncellerken diğer alanların silinmesini önlemek amacıyla Spread operatörü (`...`) ile nesnenin kopyası alınarak değişiklik yapılmalıdır:
+// Yanlış Kullanım (diğer alanlar silinir):
+setKullanici({ ad: "Selahaddin" });
+// Doğru Kullanım:
+setKullanici({ ...kullanici, ad: "Selahaddin" });
+
+
+4. DİZİ (ARRAY) STATE YÖNETİMİ VE SEÇENEKLERİ
+JavaScript'te diziler referans tipli olduğundan doğrudan diziye `push` veya `pop` yapmak React tarafından algılanmaz ve arayüzü güncellemez. Bu yüzden yeni bir dizi referansı oluşturulmalıdır:
+- Diziye Eleman Ekleme : `setListe([...liste, yeniEleman])`
+- Diziden Eleman Çıkarma : `setListe(liste.filter(item => item.id !== cikarilacakId))`
+- Dizi Elemanını Güncelleme: `setListe(liste.map(item => item.id === hedefId ? { ...item, deger: yeniDeger } : item))`
+
+
+=========================================
+ÖĞLEDEN SONRA BÖLÜMÜ: FORMLAR VE ÇOKLU GİRDİ YÖNETİMİ
+=========================================
+
+1. FORM YÖNETİMİ VE DİNAMİK INPUT İLİŞKİSİ
+React'te form girdilerinin değerleri doğrudan bir state değişkenine bağlanır. Bu yönteme "Controlled Components" (Kontrollü Bileşenler) denir.
+Input öğesinin `value` değeri state'e eşitlenir ve `onChange` olayı ile her tuş vuruşunda state güncellenir.
+
+
+2. TEK BİR HANDLER İLE ÇOKLU INPUT YÖNETİMİ
+Her input için ayrı bir `useState` tanımlamak yerine, form verilerini tek bir nesne olarak saklayıp dinamik bir `onChange` fonksiyonu yazılabilir:
+const [form, setForm] = useState({ ad: "", eposta: "", sifre: "" });
+
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({
+        ...form,
+        [name]: value // input'un name özelliğine göre dinamik eşleme
+    });
+};
+
+
+3. DİNAMİK FORM ELEMANLARI (DYNAMIC FIELDS)
+Kullanıcının isteğine göre forma yeni alanlar (örneğin yeni bir telefon numarası veya adres alanı) ekleyebilmesi için dinamik form yapıları kullanılır. Bu işlem, form alanlarının bir dizi (`array`) içinde tutulması ve bu dizinin ekranda `map` metoduyla listelenmesi ile sağlanır. Ekle/Kaldır butonları dizi state'ini güncelleyerek formu dinamikleştirir.
+
+
+=========================================
+ÖZET TABLO: HANGİ KAVRAM NE İŞE YARAR?
+=========================================
+
+1. STATE HOOK KELİMELERİ:
+- useState                 : React bileşenine dinamik durum (state) eklemeyi sağlayan kanca.
+- State Setter (setDurum)  : State'i güncelleyen ve bileşenin yeniden render edilmesini başlatan fonksiyon.
+- Controlled Component     : Değeri (value) React state'i tarafından kontrol edilen form girdileri.
+
+2. STATE OPERASYONLARI:
+- [...liste]               : Dizinin elemanlarını açıp kopyalayarak yeni bir dizi referansı oluşturma.
+- {[name]: value}          : JavaScript nesnesinde dinamik anahtar (dynamic key) kullanımı.
+- filter()                 : Belirtilen öğeyi diziden çıkararak eleman silme işlemlerinde kullanılan metot.
+
+=========================================
+TEMEL UYGULAMA VE PRATİK KAZANIMLARI
+=========================================
+
+1. SAYAÇ VE BOOLEAN TOGGLE AŞAMASI:
+- Artırma, azaltma ve sıfırlama işlevli temel sayaç bileşeni yazıldı (`Counter.jsx`).
+- Butona basıldığında metin alanını gizleyip gösteren boolean toggle bileşeni yapıldı (`Toggle.jsx`).
+
+2. NESNE VE DİZİ STATE YÖNETİMİ:
+- Spread operatörüyle kullanıcı profil bilgileri nesne state'i üzerinde güncellendi (`Object.jsx`).
+- Görev listesi uygulaması ile diziye eleman ekleme ve eleman silme (`filter`) pratikleri gerçekleştirildi (`ArrayState.jsx`).
+
+3. DİNAMİK FORMLAR VE E-TİCARET UYGULAMASI:
+- Tek `handleChange` fonksiyonu ile tüm form girdilerini güncelleyen çoklu input yapısı kuruldu (`MultipleInput.jsx`).
+- "Yeni Telefon Ekle" butonuyla ekranda dinamik olarak input türeten dinamik form alanları geliştirildi (`DynamicFormFields.jsx`).
+- E-Ticaret ürün sepeti bileşeni (`Demo11Project.jsx`) ile sepete ürün ekleme, miktar artırıp azaltma, ürün silme ve toplam fiyatı anlık hesaplayan React sepet mantığı test edildi.
+
+=========================================
+PROJEDE KULLANILAN KLASİK METOT VE HOOK'LARIN AÇIKLAMALARI
+=========================================
+
+- **useState:** React'te durum yönetimi başlatan en temel hook kancasıdır.
+  *Kullanımı:* Sepetteki ürün listesinin veya form girdilerinin anlık takibini yapmada.
+
+- **[e.target.name]: e.target.value:** input etiketinin `name` özniteliği ile değerini dinamik eşleştirerek nesneye yazar.
+  *Kullanımı:* Form elemanları değiştikçe tek bir fonksiyonla tüm state'i güncellemede.
+
+- **setListe(liste.filter(item => item.id !== id)):** Silinmek istenen elemanı listeden ayıklar.
+  *Kullanımı:* Sepetten ürün çıkartırken veya görev listesinden öğe silerken.
+
+- **setListe(liste.map(item => item.id === id ? ...)):** Belirli bir elemanın değerini (miktar vb.) günceller.
+  *Kullanımı:* Sepetteki ürün adet sayısını artırıp azaltırken.

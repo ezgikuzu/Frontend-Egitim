@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "marka": "JBL",
+    "ad": "UltraWireless ANC Kulak Üstü Kulaklık",
+    "kategori": "Elektronik",
+    "fiyat": 2499.90,
+    "eskiFiyat": 3299.90,
+    "stok": 12,
+    "tanim": "Mekansal ses desteğine sahip birinci sınıf aktif gürültü engelleyici kablosuz kulaklık.",
+    "degerlendirme": 4.8,
+    "yorumAdedi": 182,
+    "kargoBedava": true,
+    "gorsel": "🎧",
+    "incelemeler": [
+      "[10:15:30] Harman K.: Olağanüstü ses kalitesi ve başarılı gürültü engelleme.",
+      "[11:42:15] Selin Y.: Pil ömrü inanılmaz. Kesinlikle tavsiye ederim!"
+    ]
+  },
+  {
+    "id": 2,
+    "marka": "Keychron",
+    "ad": "K2 Ergonomik Mekanik Oyuncu Klavyesi",
+    "kategori": "Elektronik",
+    "fiyat": 1899.50,
+    "eskiFiyat": 2499.00,
+    "stok": 4,
+    "tanim": "Özel RGB aydınlatmalı ve değiştirilebilir (hot-swappable) kahverengi tuş anahtarlı mekanik klavye.",
+    "degerlendirme": 4.5,
+    "yorumAdedi": 64,
+    "kargoBedava": true,
+    "gorsel": "⌨️",
+    "incelemeler": [
+      "[09:30:00] Can D.: Harika tuş hissiyatı, tuş başlıkları çok kaliteli.",
+      "[14:22:10] Merve A.: Çok şık duruyor, Mac ile kusursuz çalışıyor."
+    ]
+  },
+  {
+    "id": 3,
+    "marka": "Zara",
+    "ad": "Organik Keten V-Yaka Yazlık Elbise",
+    "kategori": "Giyim",
+    "fiyat": 799.00,
+    "eskiFiyat": 1199.00,
+    "stok": 24,
+    "tanim": "Sıcak havalar için nefes alabilen, %100 organik ketenden üretilmiş bol kesim yazlık elbise.",
+    "degerlendirme": 4.2,
+    "yorumAdedi": 95,
+    "kargoBedava": false,
+    "gorsel": "👗",
+    "incelemeler": [
+      "[15:20:11] Ece B.: Çok rahat ve bedeni tam oturuyor.",
+      "[16:11:45] Fatma K.: Oldukça şık ve sade bir tasarımı var."
+    ]
+  },
+  {
+    "id": 4,
+    "marka": "Nike",
+    "ad": "Air Zoom Örgü Koşu Ayakkabısı",
+    "kategori": "Giyim",
+    "fiyat": 1599.00,
+    "eskiFiyat": 2199.00,
+    "stok": 3,
+    "tanim": "Hafif ve nefes alabilen örgü yapılı, yüksek yastıklamalı köpük tabanlı koşu ayakkabısı.",
+    "degerlendirme": 4.6,
+    "yorumAdedi": 241,
+    "kargoBedava": true,
+    "gorsel": "👟",
+    "incelemeler": [
+      "[08:12:33] Ahmet V.: Sabah koşuları için son derece rahat.",
+      "[12:05:59] Burak T.: Tam kalıp, tabanı çok esnek ve destekleyici."
+    ]
+  },
+  {
+    "id": 5,
+    "marka": "Doğan Kitap",
+    "ad": "Nitelikli Kahve Demleme ve Kavurma Kılavuzu",
+    "kategori": "Kitap",
+    "fiyat": 349.00,
+    "eskiFiyat": 450.00,
+    "stok": 42,
+    "tanim": "Nitelikli kahve demleme yöntemleri, ekipman seçimi ve çekirdek türleri üzerine kapsamlı bir rehber.",
+    "degerlendirme": 4.9,
+    "yorumAdedi": 38,
+    "kargoBedava": false,
+    "gorsel": "📚",
+    "incelemeler": [
+      "[11:00:15] Onur K.: V60 demleme tekniğimi bu kitap sayesinde geliştirdim.",
+      "[13:22:04] Deniz S.: Harika görsellerle süslenmiş, çok faydalı bir kaynak."
+    ]
+  },
+  {
+    "id": 6,
+    "marka": "Moleskine",
+    "ad": "Klasik El Yapımı Çizgisiz Deri Günlük",
+    "kategori": "Kitap",
+    "fiyat": 499.00,
+    "eskiFiyat": 699.00,
+    "stok": 15,
+    "tanim": "El yapımı deri kapaklı, eskitilmiş çizgisiz parşömen kâğıtlı klasik hatıra defteri.",
+    "degerlendirme": 4.7,
+    "yorumAdedi": 56,
+    "kargoBedava": false,
+    "gorsel": "📓",
+    "incelemeler": [
+      "[10:04:12] Yusuf M.: Çok otantik duruyor, deri kokusu harika.",
+      "[16:45:30] Aslı D.: Perfect gift for writers and sketchers."
+    ]
+  }
+]

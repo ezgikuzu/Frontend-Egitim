@@ -1,0 +1,389 @@
+@import "tailwindcss";
+
+/* 1. Temel Sayfa Düzeni */
+.app-container {
+  @apply min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-6;
+}
+
+/* 2. Hepsiburada/Trendyol Tarzı Header */
+.eticaret-header {
+  @apply bg-white border border-slate-200 rounded-2xl shadow-xs px-6 py-4 mb-6 flex flex-col gap-4;
+}
+
+.header-ust-alan {
+  @apply flex flex-col md:flex-row justify-between items-center gap-4;
+}
+
+.logo-alani {
+  @apply flex items-center gap-2;
+}
+
+.site-logo-link {
+  @apply text-2xl font-extrabold tracking-tight text-orange-500 hover:text-orange-600 transition-colors cursor-pointer;
+}
+
+.site-logo-badge {
+  @apply bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md;
+}
+
+.arama-alani {
+  @apply flex w-full md:max-w-xl bg-slate-100 border border-slate-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500 focus-within:bg-white transition-all;
+}
+
+.arama-input {
+  @apply w-full bg-transparent px-4 py-2 text-sm outline-none border-none text-slate-800 placeholder-slate-400;
+}
+
+.arama-butonu {
+  @apply bg-orange-500 hover:bg-orange-600 text-white px-5 text-sm font-semibold transition-colors cursor-pointer;
+}
+
+.kullanici-kontrolleri {
+  @apply flex items-center gap-5;
+}
+
+.menu-linki {
+  @apply text-sm font-medium text-slate-600 hover:text-orange-500 transition-colors cursor-pointer flex items-center gap-1.5;
+}
+
+.sepet-tetikleyici {
+  @apply relative bg-orange-50 border border-orange-100 hover:bg-orange-100/70 text-orange-600 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 cursor-pointer transition-colors;
+}
+
+.sepet-sayac-rozet {
+  @apply absolute -top-2 -right-2 bg-orange-500 text-white text-[10px] font-extrabold rounded-full h-5 w-5 flex items-center justify-center shadow-md animate-pulse;
+}
+
+/* Kategori Şeridi */
+.kategori-seridi {
+  @apply flex items-center gap-6 border-t border-slate-100 pt-3 flex-wrap;
+}
+
+/* 3. Kampanya Banner'ı (Hero Banner Slider) */
+.slider-banner {
+  @apply relative bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-2xl p-6 md:p-8 mb-6 overflow-hidden flex flex-col md:flex-row justify-between items-center gap-6 shadow-xs;
+}
+
+.slider-bilgi {
+  @apply space-y-2 max-w-lg;
+}
+
+.slider-etiket {
+  @apply bg-white/20 text-white text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full border border-white/20;
+}
+
+.slider-baslik {
+  @apply text-2xl md:text-3xl font-extrabold tracking-tight;
+}
+
+.slider-detay {
+  @apply text-sm text-orange-50/90;
+}
+
+.slider-sayac {
+  @apply font-mono text-sm bg-white/20 px-3.5 py-2 rounded-xl border border-white/30 text-white font-bold flex items-center gap-2 shadow-xs shrink-0;
+}
+
+/* 4. Sayfa Izgarası (Product Explorer Layout) */
+.etiket-izgara {
+  @apply grid grid-cols-1 lg:grid-cols-4 gap-6;
+}
+
+.filtre-paneli {
+  @apply lg:col-span-1 space-y-6;
+}
+
+.urun-vitrini-alan {
+  @apply lg:col-span-3 space-y-6;
+}
+
+/* Filtre Elemanları */
+.filtre-baslik {
+  @apply text-sm font-bold text-slate-800 uppercase tracking-wider mb-3 block;
+}
+
+.kategori-secenekleri {
+  @apply flex flex-col gap-1.5;
+}
+
+.kategori-secenek-btn {
+  @apply w-full text-left py-2 px-3 text-sm font-semibold rounded-xl transition-all cursor-pointer;
+}
+
+.kategori-secenek-btn-aktif {
+  @apply bg-orange-500 text-white shadow-xs;
+}
+
+.kategori-secenek-btn-pasif {
+  @apply text-slate-600 hover:text-slate-900 hover:bg-slate-100;
+}
+
+/* 5. Ürün Kartları (3-Column Responsive Grid) */
+.vitrin-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.urun-kart {
+  @apply bg-white border border-slate-200 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col relative cursor-pointer;
+}
+
+.urun-kart-ust {
+  @apply bg-slate-50 h-44 flex items-center justify-center text-5xl relative border-b border-slate-100;
+}
+
+.urun-kart-etiket-grubu {
+  @apply absolute top-3 left-3 flex flex-col gap-1.5;
+}
+
+.resim-ikoni {
+  @apply text-slate-400 select-none;
+}
+
+.urun-kargo-bedava-badge {
+  @apply bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-lg shadow-sm uppercase tracking-wider border border-emerald-400;
+}
+
+.urun-super-fiyat-badge {
+  @apply bg-orange-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-lg shadow-sm uppercase tracking-wider border border-orange-400;
+}
+
+.urun-kart-detay {
+  @apply p-4 flex-1 flex flex-col justify-between;
+}
+
+.marka-etiketi {
+  @apply text-[10px] font-extrabold uppercase tracking-wider text-orange-500 block mb-0.5;
+}
+
+.urun-baslik-etiketi {
+  @apply text-xs font-semibold text-slate-800 line-clamp-2 hover:text-orange-500 transition-colors mb-1.5;
+}
+
+.puan-satiri {
+  @apply flex items-center gap-1.5 text-[11px] font-bold text-amber-500 mb-2;
+}
+
+.yorum-adedi-etiket {
+  @apply text-slate-400 font-semibold ml-0.5;
+}
+
+.stok-uyari-seridi {
+  @apply text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-100 inline-block mb-3;
+}
+
+.urun-fiyat-grubu {
+  @apply flex items-end justify-between border-t border-slate-100 pt-3;
+}
+
+.eski-fiyat-etiketi {
+  @apply text-[10px] text-slate-400 line-through font-mono block;
+}
+
+.yeni-fiyat-etiketi {
+  @apply text-base font-extrabold text-orange-500 font-mono block;
+}
+
+.urun-sepet-ekle-butonu {
+  @apply bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2 px-3 rounded-lg transition-colors cursor-pointer disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed;
+}
+
+/* 6. Sepet Çekmecesi (Slide-Over Drawer) */
+.drawer-arka-plan {
+  @apply fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-40 transition-opacity;
+}
+
+.sepet-drawer {
+  @apply fixed top-0 right-0 h-full w-full sm:w-88 bg-white border-l border-slate-200 shadow-2xl z-50 p-6 flex flex-col justify-between transition-transform duration-300 transform;
+}
+
+.sepet-drawer-hidden {
+  @apply translate-x-full;
+}
+
+.sepet-drawer-visible {
+  @apply translate-x-0;
+}
+
+.drawer-ust {
+  @apply flex items-center justify-between border-b border-slate-200 pb-4 mb-4;
+}
+
+.drawer-kapat-btn {
+  @apply text-slate-400 hover:text-slate-700 text-xl font-bold cursor-pointer;
+}
+
+.sepet-kargo-ilerleme-kutusu {
+  @apply bg-emerald-50 border border-emerald-100 rounded-xl p-3 mb-4 flex flex-col gap-2;
+}
+
+.sepet-kargo-ilerleme-metni {
+  @apply text-xs font-semibold text-emerald-800;
+}
+
+.ilerleme-bar-yolu {
+  @apply w-full bg-emerald-100 rounded-full h-1.5 overflow-hidden;
+}
+
+.ilerleme-bar-doluluk {
+  @apply bg-emerald-500 h-1.5 rounded-full transition-all duration-300;
+}
+
+.sepet-liste-alani {
+  @apply divide-y divide-slate-100 overflow-y-auto flex-1 pr-1 space-y-3 mb-4 scrollbar-thin scrollbar-thumb-slate-200;
+}
+
+.sepet-urun-satir {
+  @apply flex justify-between items-start py-3 first:pt-0;
+}
+
+.sepet-urun-ad {
+  @apply text-xs font-bold text-slate-800 line-clamp-1;
+}
+
+.sepet-urun-fiyat {
+  @apply text-[11px] text-slate-400 font-bold font-mono mt-0.5;
+}
+
+.sepet-adet-kontrolleri {
+  @apply flex items-center gap-1.5 mt-2;
+}
+
+.sepet-adet-btn {
+  @apply bg-slate-100 hover:bg-slate-200 text-slate-600 h-5 w-5 rounded-md flex items-center justify-center text-xs font-bold cursor-pointer transition-colors;
+}
+
+.sepet-adet-yazi {
+  @apply text-xs font-bold text-slate-800 w-4 text-center;
+}
+
+.sepet-satir-sag {
+  @apply flex flex-col items-end gap-2 justify-between h-full;
+}
+
+.sepet-satir-toplam-fiyat {
+  @apply text-xs font-extrabold text-orange-500 font-mono;
+}
+
+.sepet-satir-sil-btn {
+  @apply text-[10px] text-rose-500 hover:text-rose-700 font-bold cursor-pointer;
+}
+
+.sepet-alt-odeme-paneli {
+  @apply border-t border-slate-200 pt-4 space-y-3;
+}
+
+.odeme-detay-satiri {
+  @apply flex justify-between items-center text-sm;
+}
+
+.odeme-genel-toplam {
+  @apply text-lg font-black text-orange-500 font-mono;
+}
+
+/* 7. Quick View Detay Modalı (Overlay Modal) */
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalZoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-maske {
+  @apply fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4;
+  animation: modalFadeIn 0.2s ease-out forwards;
+}
+
+.modal-kutu {
+  @apply bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-100 flex flex-col md:flex-row h-[90vh] md:h-auto max-h-[90vh];
+  animation: modalZoomIn 0.2s ease-out forwards;
+}
+
+.modal-resim-bolumu {
+  @apply bg-slate-50 md:w-1/2 flex flex-col items-center justify-center p-8 relative border-r border-slate-100 min-h-[250px];
+}
+
+.modal-resim-emoji {
+  @apply text-8xl select-none filter drop-shadow-md;
+}
+
+.modal-kategori-badge {
+  @apply absolute top-4 left-4 bg-slate-200/80 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider;
+}
+
+.modal-icerik-bolumu {
+  @apply md:w-1/2 p-6 flex flex-col justify-between overflow-y-auto;
+}
+
+.modal-baslik-alani {
+  @apply flex justify-between items-start gap-4 mb-4;
+}
+
+.modal-kapat-butonu {
+  @apply text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-1.5 rounded-full transition-colors cursor-pointer text-lg font-bold flex items-center justify-center h-8 w-8;
+}
+
+.modal-urun-bilgi {
+  @apply space-y-4;
+}
+
+.modal-detay-listesi {
+  @apply space-y-3 border-t border-b border-slate-100 py-4 my-4;
+}
+
+.modal-detay-satiri {
+  @apply flex justify-between items-center text-sm;
+}
+
+.modal-detay-etiket {
+  @apply text-slate-500 font-medium;
+}
+
+.modal-detay-deger {
+  @apply text-slate-800 font-bold;
+}
+
+.modal-yorumlar-baslik {
+  @apply text-sm font-bold text-slate-800 uppercase tracking-wider mt-4 mb-2 block;
+}
+
+.modal-yorumlar-listesi {
+  @apply space-y-2.5 max-h-36 overflow-y-auto pr-1 mb-4 scrollbar-thin scrollbar-thumb-slate-200;
+}
+
+.modal-yorum-kart {
+  @apply bg-slate-50 border border-slate-100 rounded-xl p-3 flex flex-col gap-1 text-xs;
+}
+
+.modal-yorum-yazar-satir {
+  @apply flex justify-between items-center text-[10px] text-slate-400 font-semibold;
+}
+
+.modal-yorum-yazar {
+  @apply text-slate-700 font-bold;
+}
+
+.modal-yorum-metin {
+  @apply text-slate-600 leading-relaxed font-medium;
+}
+
+.modal-aksiyon-alani {
+  @apply pt-4 border-t border-slate-100 flex flex-col gap-3;
+}
+
+/* İnce Scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}

@@ -1,0 +1,174 @@
+REACT LIFECYCLE VE EFFECT YÖNETİMİ DERS NOTLARI
+
+=========================================
+SABAH BÖLÜMÜ: REACT LIFECYCLE VE USEEFFECT HOOK'U
+=========================================
+
+1. REACT LIFECYCLE (BİLEŞEN YAŞAM DÖNGÜSÜ) NEDİR?
+Bir React bileşeninin tarayıcıda doğması, güncellenmesi ve yok olması aşamalarının tamamına "Lifecycle" denir. 3 ana aşamadan oluşur:
+- Mount (Doğma/Yüklenme)  : Bileşenin DOM ağacına ilk kez yerleştirilmesi.
+- Update (Güncellenme)   : State veya prop değiştiğinde bileşenin yeniden çalışması (re-render).
+- Unmount (Yok Olma/Ölüm)  : Bileşenin DOM ağacından tamamen kaldırılması.
+
+
+2. USEEFFECT HOOK'UNUN TEMEL YAPISI VE SÖZDİZİMİ
+React dış dünyayla (API'ler, timer'lar, manuel DOM güncellemeleri) etkileşime girmek için "side effect" (yan etki) mekanizması olarak `useEffect` Hook'unu kullanır.
+Yazım şablonu:
+useEffect(() => {
+    // Çalıştırılacak yan etkiler (Side Effects)
+    return () => {
+        // İsteğe bağlı: Temizleme İşlemi (Cleanup)
+    };
+}, [bagimlilikDizisi]);
+
+
+3. BAĞIMLILIK DİZİSİ (DEPENDENCY ARRAY) KURALLARI
+useEffect'in ne zaman çalışacağını bağımlılık dizisi kontrol eder:
+
+- Boş Dizi [] (Mounting) : 
+  useEffect içindeki kod sadece bileşen ekrana ilk geldiğinde (mount) 1 kere çalışır. 
+  Genellikle sayfa açılışında API'den ilk veriyi çekmek için kullanılır.
+  Örnek:
+  useEffect(() => { console.log("İlk yüklenmede çalıştı."); }, []);
+
+- Bağımlılık Dizisi Olmadan (Her Render):
+  İkinci parametre hiç yazılmazsa, bileşen ilk yüklendiğinde VE her state/prop güncellemesinde (re-render) tekrar çalışır. Performans sorunlarına yol açtığı için çok nadiren kullanılır.
+  Örnek:
+  useEffect(() => { console.log("Her render sonrası çalışır."); });
+
+- Belirli Bağımlılıklar [state, prop] (Updating):
+  Diziye yazılan değişkenler değiştiğinde useEffect tekrar çalışır.
+  Örnek:
+  useEffect(() => { console.log("Sayac güncellendi."); }, [sayac]);
+
+
+4. CLEANUP (TEMİZLEME) FONKSİYONU NEDİR?
+useEffect içinden geri döndürülen (return edilen) fonksiyona "cleanup" denir. Bileşen ekrandan kaldırılmadan (unmount) hemen önce veya useEffect tekrar çalışmadan hemen önce çalışarak bellek sızıntılarını (memory leaks) engeller.
+Aşağıdaki durumlarda cleanup kullanılması zorunludur:
+- setInterval / setTimeout temizleme
+- window.addEventListener olay dinleyicisi temizleme
+- WebSocket veya veri aboneliklerini sonlandırma
+- Devam eden API isteklerini iptal etme (Race condition engelleme)
+
+
+=========================================
+ÖĞLEDEN SONRA BÖLÜMÜ: ASENKRON VERİ YÜKLEME VE KOŞULLU RENDERING
+=========================================
+
+1. FETCH API VE ASENKRON VERİ YÖNETİMİ
+React'te bileşen yüklendiğinde bir API'den veri çekmek için `fetch()` metodu `useEffect` içinde çağrılır. API istekleri asenkron olduğu için arayüzde 3 ana durum (state) yönetilir:
+- data: API'den gelen veriyi tutar.
+- loading: Verinin o anda yüklenip yüklenmediğini tutar (true/false).
+- error: İstek hata verdiğinde hata mesajını tutar.
+
+Örnek Şablon:
+const [veri, setVeri] = useState([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+    fetch("https://api.example.com/data")
+        .then(res => {
+            if(!res.ok) throw new Error("Ağ hatası");
+            return res.json();
+        })
+        .then(data => { setVeri(data); setLoading(false); })
+        .catch(err => { setError(err.message); setLoading(false); });
+}, []);
+
+
+2. KOŞULLU RENDERING (Conditional Rendering)
+API isteklerindeki loading, error ve data durumlarını kullanıcıya göstermek için koşullu render metotları uygulanır:
+- Yükleniyor ekranı (Skeleton veya Loading Spinner)
+- Hata ekranı (Try Again butonu ve hata mesajı)
+- Boş liste uyarısı (Veri boş geldiğinde "Öğe bulunamadı" yazısı)
+- Veri listeleme (Veri geldiğinde listenin gösterilmesi)
+
+
+3. YARIŞ DURUMU (RACE CONDITION) NEDİR?
+Kullanıcı hızlıca filtre değiştirirse veya sekmeler arasında geçiş yaparsa, ardışık API istekleri tetiklenir. Ağ gecikmelerinden dolayı, daha önce atılmış olan istek daha geç tamamlanabilir ve ekranda yanlış verinin gösterilmesine sebep olur.
+Bunu engellemek için useEffect cleanup'ında bir boolean bayrak (`ignore`) kullanılır.
+
+Örnek:
+useEffect(() => {
+    let active = true;
+    fetch(`/api/data?query=${query}`)
+        .then(res => res.json())
+        .then(data => {
+            if (active) setVeri(data);
+        });
+    return () => {
+        active = false; // Sonraki istek tetiklendiğinde veya unmount'ta aktifi kapat
+    };
+}, [query]);
+
+
+=========================================
+ÖZET TABLO: HANGİ KAVRAM NE İŞE YARAR?
+=========================================
+
+1. YAŞAM DÖNGÜSÜ KELİMELERİ:
+- Mount                  : Bileşenin tarayıcı ekranına yerleştirilmesi ve ilk kez render edilmesi.
+- Update                 : Durum (state) veya prop değiştiğinde bileşenin yeniden çizilmesi.
+- Unmount                : Bileşenin ekrandan kaldırılması ve hafızadan silinmesi.
+
+2. USEEFFECT VE YAN ETKİLER:
+- useEffect              : React bileşenlerinde yan etkileri (side effects) yöneten hook.
+- Bağımlılık Dizisi      : useEffect'in ne zaman tetikleneceğini belirleyen ikinci parametre dizisi.
+- Cleanup Function       : Bileşen yok olmadan veya effect tekrar çalışmadan önce çalışan temizleme fonksiyonu.
+- ignore / active bayrağı: Yarış durumunu (race condition) önlemek için kullanılan asenkron istek doğrulama yöntemi.
+
+3. VERİ YÜKLEME KAVRAMLARI:
+- fetch()                : Tarayıcının varsayılan asenkron HTTP istek atma fonksiyonu.
+- Loading State          : Veri çekilirken arayüzde "Yükleniyor" animasyonu göstermek için tutulan durum.
+- Error State            : API isteği başarısız olduğunda hatayı yakalayıp ekranda göstermek için tutulan durum.
+- Polling                : Belirli aralıklarla (Örn: her 5 saniyede bir) API'ye tekrar istek atarak verileri canlı tutma yöntemi.
+
+=========================================
+UYGULAMALI E-TİCARET PROJESİ (TRENDSTORE) YAPISAL KAZANIMLARI
+=========================================
+
+1. MOUNTING (DOĞMA/YÜKLENME) AŞAMASI:
+- `App` bileşeni ilk açıldığında `useEffect` aracılığıyla `/urunler.json` API endpoint'ine istek atar ve ürünleri yükler.
+- `Baslik` bileşeni mount olduğunda ekran çözünürlüğünü izleyen olay dinleyicilerini (Event Listeners) başlatır.
+- `KampanyaBanner` bileşeni mount olduğunda geri sayım sayacı zamanlayıcısını (timer) kurar.
+
+2. UPDATING (GÜNCELLEME) AŞAMASI:
+- Arama çubuğunda arama yapıldığında `UrunListesi` güncellenerek süzülmüş ürün kartlarını ekrana basar.
+- Kategori sekmelerine tıklandığında seçili kategori güncellenir ve ürünler anında süzülerek ekrana yansıtılır.
+- Sepete ürün ekleme/çıkarma durumunda `sepet` state'i güncellenir. Bu güncellenme, vitrindeki ürünlerin stok rakamlarının eşzamanlı olarak azalmasını veya artmasını tetikler.
+
+3. CLEANUP (TEMİZLEME) AŞAMASI VE SIZINTILARI ÖNLEME:
+- **Sayaç Temizliği:** `KampanyaBanner.jsx` bileşeninde `setInterval` ile kurulan zamanlayıcı, bileşen unmount olduğunda `clearInterval` ile hafızadan temizlenir.
+- **Ekran Dinleyici Temizliği:** Ekran çözünürlüğünü izleyen `window.addEventListener('resize')` olay dinleyicisi, bileşen kaldırıldığında `window.removeEventListener` ile iptal edilir; böylece gereksiz işlemci tüketimi önlenir.
+
+4. ASENKRON VERİ YÜKLEME VE KULLANICI DENEYİMİ:
+- Ürün verileri `fetch` ile çekilirken arayüzde iskelet (skeleton) yükleyicileri gösterilir.
+- Olası ağ hatalarında arayüzde hata mesajı gösterilerek kullanıcı bilgilendirilir.
+
+5. YARIŞ DURUMLARININ (RACE CONDITIONS) ENGELLENMESİ:
+- Asenkron istekler yönetilirken yarış durumlarını (race conditions) engellemek amacıyla React'te cleanup alanında iptal bayrağı (ignore/active) gibi teknikler tercih edilir. Projemizde ürünler başlangıçta tek seferde çekilip istemci tarafında süzüldüğü için bu tür karmaşık durumlar ve sayfa yükleme gecikmeleri önlenmiştir.
+
+6. TÜRETİLMİŞ DURUM (DERIVED STATE) KULLANIMI:
+- **Sepet Toplamı:** Sepet toplam fiyatı sepet state'inden anlık türetilir.
+- **Kargo Kampanyası:** 1500 TL üzeri ücretsiz kargo kontrolü ve kargoyu bedavaya getirmek için eklenmesi gereken kalan tutar (`kalanTutar`) sepet toplamından dinamik türetilir.
+- **Vitrin Stok Yönetimi:** Vitrindeki ürünlerin anlık güncel stokları, ham ürün stoğundan sepetteki adetler çıkarılarak dinamik olarak render adımında hesaplanır (`displayProducts`). Böylece yan etki oluşturmadan iki taraflı stok eşitlemesi sağlanır.
+
+7. STABİL REFERANSLAR (STABLE CALLBACKS):
+- App.jsx içinde tanımlanan sepet işlemleri ve kategori değişim fonksiyonları `useCallback` ile sarmalanmıştır. Bu sayede alt bileşenlerin prop referansları sabit tutularak gereksiz render döngüleri önlenmiştir.
+
+=========================================
+8. PROJEDE KULLANILAN REACT HOOK'LARININ AÇIKLAMALARI VE GÖREVLERİ
+=========================================
+
+- **useState:** Bileşen içinde zamanla değişebilecek dinamik verileri (durum/state) saklamak için kullanılır. Bu durum değiştiğinde React arayüzü otomatik olarak yeniden çizer (re-render).
+  *Projedeki Yeri:* Sepetteki ürün listesi, sayfa yüklenme (loading) durumu veya arama kelimesi `useState` ile tutulur.
+
+- **useEffect:** Bileşenin dış dünya ile senkronize olmasını veya yan etkileri (side effects) yönetmesini sağlar. API istekleri, zamanlayıcılar (timers) ve olay dinleyicileri (event listeners) gibi asenkron işlemler burada kurulur. Bileşen kaldırılırken (unmount) bellek sızıntılarını önlemek için bir "temizleme" (cleanup) fonksiyonu döndürür.
+  *Projedeki Yeri:* Sayfa ilk açıldığında API'den ürünlerin fetch edilmesi veya flaş indirim sayacının başlatılıp durdurulması.
+
+- **useMemo:** Hesaplama maliyeti yüksek olan verileri önbelleğe (cache) alarak gereksiz yere tekrar hesaplanmasını engeller. Yalnızca bağımlılık dizisindeki değişkenler değiştiğinde hesaplamayı yineler.
+  *Projedeki Yeri:* Sepet toplam fiyatının hesaplanması ve vitrin ürün stoklarının, sepet miktarı düşülerek dinamik olarak türetilmesi (`displayProducts`).
+
+- **useCallback:** Fonksiyonların referanslarını hafızada sabitleyerek (memoize), her render döngüsünde yeniden oluşturulmalarını engeller. Bu sayede, fonksiyon prop olarak geçilen alt bileşenlerin gereksiz yere tetiklenmesinin ve sonsuz döngülerin önüne geçilir.
+  *Projedeki Yeri:* `handleSepeteEkle`, `handleAdetGuncelle` ve `handleUrunCikar` fonksiyonlarının stabilize edilmesi.
