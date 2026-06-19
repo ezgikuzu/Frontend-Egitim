@@ -1,0 +1,101 @@
+REACT'TA STİL YÖNETİMİ VE FORM KÜTÜPHANELERİ DERS NOTLARI
+
+=========================================
+SABAH BÖLÜMÜ: REACT STİL YÖNETİMİ VE TAILWIND CSS UYGULAMALARI
+=========================================
+
+1. REACT PROJELERİNDE STİL YÖNETİM YÖNTEMLERİ
+React arayüzlerini tasarlarken kullanılan yaygın CSS yöntemleri:
+- Inline CSS  : `style={{ color: "red", fontSize: "14px" }}` biçiminde doğrudan etiket içine nesne olarak yazılır. Dinamik stiller için uygundur.
+- CSS Modülleri: `Bilesen.module.css` adıyla oluşturulan ve çakışmaları önlemek için CSS class isimlerini hash'leyen (benzersizleştiren) yapı.
+- Tailwind CSS : Ayrı bir CSS dosyası yazmadan, doğrudan `className` içine yazılan utility sınıfları ile tasarım yapma. Projemiz TrendStore v2 kapsamında tercih edilen ana stil yöntemidir.
+
+
+2. TRENDSTORE V2 STİL ALTYAPISI VE KAZANIMLARI
+- Butonlar, düzen çizgileri, başlık tasarımları Tailwind CSS ile zenginleştirilmiştir (`AddProductForm.jsx`, `Header.jsx`).
+- responsive tasarım pratikleriyle mobil uyumlu kart ızgaraları (`ProductGrid.jsx`) ve yan menü (`Sidebar.jsx`) yapılandırılmıştır.
+- Duruma (State) bağlı olarak dinamik CSS sınıfları uygulanmıştır. Örneğin seçili kategorinin renginin değişmesi:
+  `className={selectedCategory === cat ? "active-category-style" : "normal-category-style"}`
+
+
+=========================================
+ÖĞLEDEN SONRA BÖLÜMÜ: REACT HOOK FORM İLE FORM YÖNETİMİ
+=========================================
+
+1. FORMLARDA KÜTÜPHANE KULLANMANIN AVANTAJLARI
+Geleneksel "Controlled Components" yöntemi büyük formlarda her input için state ve onChange yazmayı zorunlu kılar. Bu durum gereksiz re-render'lara ve kod kalabalığına neden olur.
+`react-hook-form` kütüphanesi:
+- Performanslıdır: Sadece değişen veya hata veren alanları izleyerek gereksiz render'ları engeller (Uncontrolled input yaklaşımı).
+- Kod Sadelendirmesi: State yazma ihtiyacını tamamen ortadan kaldırır.
+- Hazır Doğrulama (Validation): HTML5 standartlarında veya özel kurallarla doğrulamayı çok kolaylaştırır.
+
+
+2. REACT-HOOK-FORM VE USEFORM HOOK KULLANIMI
+`useForm` kancası formun tüm yönetimini üstlenir:
+const { register, handleSubmit, reset, formState: { errors } } = useForm();
+- `register`    : Input elemanını kütüphaneye kaydeder, state ve olay dinleyicilerini otomatik bağlar.
+- `handleSubmit`: Form gönderildiğinde doğrulamaları çalıştırır. Doğrulama başarılıysa kendi yazdığımız `onSubmit` metodunu tetikler.
+- `errors`      : Hata mesajlarını ve doğrulama durumlarını tutan nesnedir.
+- `reset`       : Form alanlarını sıfırlamak için kullanılır.
+
+
+3. DOĞRULAMA (VALIDATION) KURALLARI VE HATA YAZDIRMA
+Input'ları kaydederken ikinci parametreye doğrulama kuralları nesnesi geçilir:
+<input 
+    type="text" 
+    {...register("title", { 
+        required: "Ürün adı zorunludur", 
+        minLength: { value: 3, message: "En az 3 karakter olmalıdır" } 
+    })} 
+/>
+Hata mesajının kullanıcıya gösterilmesi:
+{errors.title && <span className="error-msg">{errors.title.message}</span>}
+
+
+=========================================
+ÖZET TABLO: HANGİ KAVRAM NE İŞE YARAR?
+=========================================
+
+1. FORM YÖNETİM APİ'LERİ:
+- useForm()                : react-hook-form kütüphanesinin yönetimini başlatan ana hook.
+- register()               : Input öğesini forma kaydeden ve validation kurallarını bağlayan fonksiyon.
+- handleSubmit()           : Doğrulamayı başlatan ve başarılıysa onSubmit callback fonksiyonunu çalıştıran yapı.
+- reset()                  : Formun tüm girdilerini ve hata durumlarını ilk haline (boş) sıfırlayan metot.
+- formState.errors         : Formdaki hatalı alanları ve hata açıklamalarını barındıran nesne.
+
+2. DOĞRULAMA PARAMETRELERİ:
+- required                 : Alanın doldurulmasının zorunlu olduğunu belirten kural.
+- minLength                : Metin girdileri için minimum karakter sınırını tanımlayan kural.
+- min                      : Sayısal girdiler için minimum alt değer sınırını belirleyen kural.
+
+=========================================
+TEMEL UYGULAMA VE PRATİK KAZANIMLARI
+=========================================
+
+1. TAILWIND İLE RE-DESIGN AŞAMASI:
+- TrendStore projesinin v2 sürümü için bileşenlerin arayüzleri Tailwind sınıfları kullanılarak premium seviyeye taşındı.
+
+2. YENİ ÜRÜN EKLEME FORMU AŞAMASI:
+- Ürün adı, kategori, görsel URL, fiyat ve açıklama alanları barındıran yeni ürün ekleme bileşeni (`AddProductForm.jsx`) tasarlandı.
+- Formdaki tüm girdiler `useForm` ile yönetildi.
+
+3. VALIDATION VE ÜRÜN LİSTESİNE EKLEME:
+- Fiyat alanı için 0'dan büyük olma (`min: 1`) kuralı ve ürün adı için en az 3 karakter kısıtı eklenerek doğrulama yapıldı.
+- Doğrulanan form verileri `onAddProduct` callback'i aracılığıyla üst bileşendeki (`App.jsx`) `products` state'ine `Date.now()` kimliği eklenerek asenkron kaydedildi.
+- Başarılı gönderimden sonra `reset()` tetiklenerek form sıfırlandı ve `setView("home")` ile anlık olarak vitrine geri dönüldü.
+
+=========================================
+PROJEDE KULLANILAN METOT VE HOOK'LARIN AÇIKLAMALARI
+=========================================
+
+- **useForm:** Form yönetim işlemlerini kolaylaştıran harici hook kancasıdır.
+  *Kullanımı:* Form kayıt, gönderim ve hata durumlarını yönetmede.
+
+- **register:** Girdi elemanını React Hook Form sistemine kaydeder.
+  *Kullanımı:* `{...register("isim")}` yazarak inputun değerini sistemle eşlemede.
+
+- **reset:** Formdaki tüm girdileri boşaltır ve hataları temizler.
+  *Kullanımı:* "Geri Dön" butonuna tıklandığında veya ürün başarıyla kaydedildiğinde alanları sıfırlamada.
+
+- **handleSubmit:** Formun gönderme (submit) işlemini kontrol altına alır.
+  *Kullanımı:* `<form onSubmit={handleSubmit(onSubmit)}>` yazarak doğrulama öncesi müdahalede.

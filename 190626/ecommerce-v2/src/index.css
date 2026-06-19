@@ -1,0 +1,892 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-gray-50 text-gray-800 font-sans;
+  margin: 0;
+}
+
+/* Common Layout and Elements */
+.container {
+  @apply max-w-7xl mx-auto px-4;
+}
+
+.header {
+  @apply bg-white border-b border-gray-200 py-3 shadow-xs sticky top-0 z-50;
+}
+
+.header-container {
+  @apply flex items-center justify-between gap-4 max-w-7xl mx-auto px-4;
+}
+
+.logo {
+  @apply text-2xl font-black text-red-600 tracking-tight flex items-center gap-1 cursor-pointer select-none;
+}
+
+.logo-accent {
+  @apply text-gray-800;
+}
+
+.search-bar {
+  @apply flex flex-1 max-w-xl items-center border-2 border-red-500 rounded-full overflow-hidden bg-gray-50 shadow-inner;
+}
+
+.search-input {
+  @apply w-full px-4 py-2 bg-transparent outline-hidden text-gray-700 text-sm;
+}
+
+.search-button {
+  @apply bg-red-500 text-white px-6 py-2.5 font-bold hover:bg-red-600 transition-colors text-sm cursor-pointer;
+}
+
+.header-actions {
+  @apply flex items-center gap-6 text-gray-700 font-medium;
+}
+
+.action-item {
+  @apply flex items-center gap-2 hover:text-red-500 transition-colors cursor-pointer text-sm font-semibold relative;
+}
+
+.badge {
+  @apply bg-red-600 text-white text-[10px] font-bold px-1 py-0.5 rounded-full absolute -top-2.5 -right-2.5 flex items-center justify-center min-w-[18px] h-[18px];
+}
+
+.nav-categories {
+  @apply border-b border-gray-200 bg-white py-2.5 shadow-xs text-sm sticky top-[60px] z-40;
+}
+
+.nav-container {
+  @apply flex items-center gap-6 max-w-7xl mx-auto px-4 overflow-x-auto whitespace-nowrap;
+}
+
+.nav-link {
+  @apply text-gray-600 hover:text-red-500 font-semibold transition-colors cursor-pointer py-1;
+}
+
+.nav-link-active {
+  @apply text-red-500 border-b-2 border-red-500;
+}
+
+/* Main Layout */
+.main-layout {
+  @apply flex flex-col md:flex-row gap-6 max-w-7xl mx-auto px-4 py-6 items-start;
+}
+
+.sidebar {
+  @apply w-full md:w-64 bg-white border border-gray-200 rounded-2xl p-5 shrink-0 shadow-xs md:sticky md:top-[120px];
+}
+
+.sidebar-title {
+  @apply font-bold text-gray-900 border-b border-gray-100 pb-2.5 mb-3 text-base uppercase tracking-wider;
+}
+
+.sidebar-list {
+  @apply flex flex-col gap-1.5;
+}
+
+.sidebar-item {
+  @apply text-gray-600 hover:text-red-500 text-sm py-1.5 px-2.5 rounded-lg transition-all cursor-pointer flex justify-between items-center hover:bg-red-50/50 font-medium;
+}
+
+.sidebar-item-active {
+  @apply bg-red-50 text-red-500 font-semibold;
+}
+
+.content-area {
+  @apply flex-1 w-full;
+}
+
+.content-header {
+  @apply flex items-center justify-between mb-6;
+}
+
+.page-title {
+  @apply text-xl font-black text-gray-900;
+}
+
+/* Product Grid and Card */
+.product-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+}
+
+.product-card {
+  @apply bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full relative cursor-pointer hover:-translate-y-1;
+}
+
+.product-img-container {
+  @apply aspect-square bg-gray-50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative;
+}
+
+.product-img {
+  @apply object-contain h-full w-full p-4 transition-transform duration-300;
+}
+
+.product-info {
+  @apply p-4 flex flex-col flex-grow gap-2;
+}
+
+.product-category {
+  @apply text-[10px] font-bold text-red-500 uppercase tracking-widest;
+}
+
+.product-title {
+  @apply font-semibold text-gray-800 text-sm line-clamp-2 hover:text-red-500 transition-colors h-10;
+}
+
+.product-rating {
+  @apply flex items-center gap-1 text-xs text-amber-500 font-bold;
+}
+
+.product-price-container {
+  @apply flex items-center justify-between mt-auto pt-3 border-t border-gray-50;
+}
+
+.product-price {
+  @apply text-lg font-extrabold text-gray-900;
+}
+
+.product-btn {
+  @apply bg-red-500 text-white rounded-xl p-2 hover:bg-red-600 transition-colors shadow-xs cursor-pointer flex items-center justify-center;
+}
+
+/* Form Styles */
+.form-layout {
+  @apply max-w-lg mx-auto bg-white border border-gray-200 rounded-2xl p-8 shadow-xs my-10;
+}
+
+.form-title {
+  @apply text-2xl font-black text-gray-900 mb-6 text-center;
+}
+
+.form-group {
+  @apply flex flex-col gap-1.5 mb-4;
+}
+
+.form-label {
+  @apply text-xs font-bold text-gray-700 uppercase tracking-wider;
+}
+
+.form-input {
+  @apply border border-gray-200 rounded-xl px-4 py-3 outline-hidden focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-all text-sm bg-gray-50/50;
+}
+
+.form-select {
+  @apply border border-gray-200 rounded-xl px-4 py-3 outline-hidden focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-all text-sm bg-gray-50/50 appearance-none;
+}
+
+.form-textarea {
+  @apply border border-gray-200 rounded-xl px-4 py-3 outline-hidden focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-all text-sm bg-gray-50/50 min-h-[100px] resize-none;
+}
+
+.form-error {
+  @apply text-xs text-red-500 font-semibold mt-1 flex items-center gap-1;
+}
+
+.form-submit {
+  @apply w-full bg-red-500 text-white font-bold py-3.5 rounded-xl hover:bg-red-600 transition-all shadow-xs cursor-pointer text-sm tracking-wide active:scale-[0.98];
+}
+
+.form-toggle-btn {
+  @apply text-xs font-semibold text-red-500 hover:text-red-600 cursor-pointer text-center block mt-4 transition-colors;
+}
+
+/* Footer */
+.footer {
+  @apply bg-gray-900 text-gray-300 py-12 mt-16 border-t border-gray-800;
+}
+
+.footer-container {
+  @apply max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8;
+}
+
+.footer-section {
+  @apply flex flex-col gap-3;
+}
+
+.footer-title {
+  @apply font-extrabold text-white text-sm uppercase tracking-wider mb-2;
+}
+
+.footer-link {
+  @apply text-gray-400 hover:text-white transition-colors text-sm cursor-pointer;
+}
+
+.footer-bottom {
+  @apply border-t border-gray-800 mt-10 pt-6 text-center text-xs text-gray-500 max-w-7xl mx-auto px-4;
+}
+
+/* Utilities */
+.hidden-scroll {
+  scrollbar-width: none;
+}
+.hidden-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.detail-container {
+  @apply flex flex-col md:flex-row gap-8 max-w-7xl mx-auto px-4 py-8 items-start;
+}
+
+.detail-img-box {
+  @apply w-full md:w-1/2 aspect-square bg-white border border-gray-200 rounded-2xl overflow-hidden p-8 flex items-center justify-center shadow-xs;
+}
+
+.detail-img {
+  @apply object-contain w-full h-full max-h-[400px];
+}
+
+.detail-info-box {
+  @apply flex-1 w-full flex flex-col gap-4 bg-white border border-gray-200 rounded-2xl p-8 shadow-xs;
+}
+
+.detail-badge {
+  @apply text-xs font-bold bg-red-50 text-red-500 px-3 py-1 rounded-full w-max uppercase tracking-wider;
+}
+
+.detail-title {
+  @apply text-2xl font-black text-gray-900 leading-tight;
+}
+
+.detail-rating {
+  @apply flex items-center gap-1 text-sm text-amber-500 font-bold;
+}
+
+.detail-price {
+  @apply text-3xl font-black text-gray-900 border-y border-gray-100 py-4;
+}
+
+.detail-description {
+  @apply text-sm text-gray-600 leading-relaxed;
+}
+
+.detail-btn-group {
+  @apply flex gap-4 mt-4;
+}
+
+.detail-add-btn {
+  @apply flex-1 bg-red-500 text-white font-bold py-3.5 rounded-xl hover:bg-red-600 transition-colors shadow-xs text-sm text-center cursor-pointer;
+}
+
+.detail-back-btn {
+  @apply bg-gray-100 text-gray-700 hover:bg-gray-200 font-bold px-6 py-3.5 rounded-xl transition-colors text-sm text-center cursor-pointer;
+}
+
+.drawer-overlay {
+  @apply fixed inset-0 bg-black/50 z-[100] transition-opacity;
+}
+
+.drawer {
+  @apply fixed top-0 right-0 h-full w-full max-w-md bg-white z-[110] shadow-2xl flex flex-col transition-transform duration-300;
+}
+
+.drawer-header {
+  @apply flex items-center justify-between p-4 border-b border-gray-200;
+}
+
+.drawer-title {
+  @apply font-black text-lg text-gray-900;
+}
+
+.drawer-close {
+  @apply text-gray-400 hover:text-gray-600 cursor-pointer font-bold text-xl p-1;
+}
+
+.drawer-body {
+  @apply flex-1 overflow-y-auto p-4 flex flex-col gap-4;
+}
+
+.cart-item {
+  @apply flex gap-3 border-b border-gray-100 pb-4 items-center;
+}
+
+.cart-item-img-box {
+  @apply w-16 h-16 bg-gray-50 border border-gray-100 rounded-lg overflow-hidden shrink-0 flex items-center justify-center;
+}
+
+.cart-item-img {
+  @apply object-contain w-full h-full p-1;
+}
+
+.cart-item-info {
+  @apply flex-1 flex flex-col gap-1;
+}
+
+.cart-item-title {
+  @apply font-bold text-xs text-gray-800 line-clamp-2;
+}
+
+.cart-item-price {
+  @apply font-extrabold text-sm text-gray-900;
+}
+
+.cart-item-qty {
+  @apply flex items-center gap-2 mt-1;
+}
+
+.qty-btn {
+  @apply w-6 h-6 border border-gray-300 rounded-md flex items-center justify-center font-bold text-xs hover:bg-gray-50 cursor-pointer;
+}
+
+.qty-val {
+  @apply text-xs font-semibold text-gray-800 w-4 text-center;
+}
+
+.cart-item-remove {
+  @apply text-[10px] text-red-500 hover:underline cursor-pointer font-bold mt-1 self-start;
+}
+
+.drawer-footer {
+  @apply p-4 border-t border-gray-200 bg-gray-50 flex flex-col gap-4;
+}
+
+.cart-summary-row {
+  @apply flex justify-between items-center text-sm font-medium text-gray-600;
+}
+
+.cart-summary-total {
+  @apply font-extrabold text-gray-900 text-lg;
+}
+
+.cart-checkout-btn {
+  @apply w-full bg-red-500 text-white font-bold py-3.5 rounded-xl hover:bg-red-600 transition-colors shadow-xs text-sm text-center cursor-pointer;
+}
+
+.modal-overlay {
+  @apply fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4;
+}
+
+.modal-content {
+  @apply bg-white rounded-2xl w-full max-w-md p-8 relative shadow-2xl;
+}
+
+.categories-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-7xl mx-auto px-4 py-8;
+}
+
+.category-card {
+  @apply bg-white border border-gray-100 rounded-3xl p-8 text-center shadow-xs hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col items-center gap-4 hover:-translate-y-2 border-b-4 hover:border-b-red-500;
+}
+
+.category-icon-box {
+  @apply w-16 h-16 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center font-black text-2xl shadow-xs transition-transform duration-300;
+}
+
+.category-name {
+  @apply font-black text-lg text-gray-800 tracking-tight;
+}
+
+.category-count {
+  @apply text-xs bg-gray-50 text-gray-400 font-bold px-3 py-1.5 rounded-full;
+}
+
+.about-container {
+  @apply max-w-3xl mx-auto px-4 py-12 flex flex-col gap-8;
+}
+
+.about-header {
+  @apply text-center flex flex-col gap-2;
+}
+
+.about-title {
+  @apply text-3xl font-black text-gray-900;
+}
+
+.about-subtitle {
+  @apply text-sm text-gray-400 font-semibold uppercase tracking-wider;
+}
+
+.about-body {
+  @apply bg-white border border-gray-200 rounded-2xl p-8 shadow-xs flex flex-col gap-6;
+}
+
+.about-text {
+  @apply text-sm text-gray-600 leading-relaxed;
+}
+
+.about-values-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+}
+
+.value-card {
+  @apply bg-gray-50 rounded-xl p-6 text-center border border-gray-100 flex flex-col gap-2;
+}
+
+.value-title {
+  @apply font-bold text-sm text-gray-900;
+}
+
+.value-desc {
+  @apply text-xs text-gray-500 leading-relaxed;
+}
+
+.help-container {
+  @apply max-w-4xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-start;
+}
+
+.faq-section {
+  @apply flex flex-col gap-4;
+}
+
+.faq-card {
+  @apply bg-white border border-gray-200 rounded-xl p-4 shadow-xs flex flex-col gap-2 cursor-pointer;
+}
+
+.faq-question {
+  @apply font-bold text-sm text-gray-800 flex justify-between items-center;
+}
+
+.faq-answer {
+  @apply text-xs text-gray-500 leading-relaxed border-t border-gray-50 pt-2;
+}
+
+.support-section {
+  @apply bg-white border border-gray-200 rounded-2xl p-6 shadow-xs flex flex-col gap-4;
+}
+
+/* Tracking and Returns Styles */
+.tracking-container {
+  @apply max-w-2xl mx-auto px-4 py-12 flex flex-col gap-8;
+}
+
+.tracking-card {
+  @apply bg-white border border-gray-200 rounded-2xl p-8 shadow-xs flex flex-col gap-6;
+}
+
+.timeline {
+  @apply flex flex-col md:flex-row justify-between items-center gap-6 mt-6 relative;
+}
+
+.timeline-step {
+  @apply flex flex-col items-center gap-2 relative z-10;
+}
+
+.timeline-icon {
+  @apply w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold bg-gray-100 text-gray-400 border-2 border-white;
+}
+
+.timeline-icon-active {
+  @apply bg-red-500 text-white ring-4 ring-red-100;
+}
+
+.timeline-label {
+  @apply font-bold text-xs text-gray-500 text-center;
+}
+
+.timeline-label-active {
+  @apply text-red-500;
+}
+
+.return-success-box {
+  @apply bg-green-50 border border-green-200 rounded-xl p-4 text-center my-4;
+}
+
+.return-success-code {
+  @apply font-extrabold text-green-700 text-lg;
+}
+
+.dark body {
+  @apply bg-gray-950 text-gray-100;
+}
+
+.dark .header {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .logo-accent {
+  @apply text-gray-100;
+}
+
+.dark .search-bar {
+  @apply border-red-600 bg-gray-800;
+}
+
+.dark .search-input {
+  @apply text-gray-100;
+}
+
+.dark .action-item {
+  @apply text-gray-300 hover:text-red-400;
+}
+
+.dark .nav-categories {
+  @apply border-gray-800 bg-gray-900;
+}
+
+.dark .nav-link {
+  @apply text-gray-400 hover:text-red-400;
+}
+
+.dark .nav-link-active {
+  @apply text-red-500 border-red-500;
+}
+
+.dark .sidebar {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .sidebar-title {
+  @apply text-gray-100 border-gray-800;
+}
+
+.dark .sidebar-item {
+  @apply text-gray-400 hover:text-red-400 hover:bg-red-950/30;
+}
+
+.dark .sidebar-item-active {
+  @apply bg-red-950/50 text-red-400;
+}
+
+.dark .page-title {
+  @apply text-gray-100;
+}
+
+.dark .product-card {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .product-img-container {
+  @apply bg-gray-950 border-gray-800;
+}
+
+.dark .product-title {
+  @apply text-gray-200 hover:text-red-400;
+}
+
+.dark .product-price {
+  @apply text-gray-100;
+}
+
+.dark .form-layout {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .form-title {
+  @apply text-gray-100;
+}
+
+.dark .form-label {
+  @apply text-gray-300;
+}
+
+.dark .form-input, .dark .form-select, .dark .form-textarea {
+  @apply border-gray-700 bg-gray-800/50 text-gray-100 focus:border-red-500;
+}
+
+.dark .footer {
+  @apply bg-gray-950 border-gray-900;
+}
+
+.dark .footer-title {
+  @apply text-white;
+}
+
+.dark .footer-link {
+  @apply text-gray-500 hover:text-white;
+}
+
+.dark .footer-bottom {
+  @apply border-gray-900 text-gray-600;
+}
+
+.dark .detail-img-box {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .detail-info-box {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .detail-title {
+  @apply text-gray-100;
+}
+
+.dark .detail-price {
+  @apply text-gray-100 border-gray-800;
+}
+
+.dark .detail-description {
+  @apply text-gray-400;
+}
+
+.dark .detail-back-btn {
+  @apply bg-gray-800 text-gray-300 hover:bg-gray-700;
+}
+
+.dark .drawer {
+  @apply bg-gray-900;
+}
+
+.dark .drawer-header {
+  @apply border-gray-800;
+}
+
+.dark .drawer-title {
+  @apply text-gray-100;
+}
+
+.dark .drawer-close {
+  @apply text-gray-500 hover:text-gray-300;
+}
+
+.dark .cart-item {
+  @apply border-gray-800;
+}
+
+.dark .cart-item-img-box {
+  @apply bg-gray-950 border-gray-800;
+}
+
+.dark .cart-item-title {
+  @apply text-gray-300;
+}
+
+.dark .cart-item-price {
+  @apply text-gray-100;
+}
+
+.dark .qty-btn {
+  @apply border-gray-700 text-gray-300 hover:bg-gray-800;
+}
+
+.dark .qty-val {
+  @apply text-gray-200;
+}
+
+.dark .drawer-footer {
+  @apply border-gray-800 bg-gray-950;
+}
+
+.dark .cart-summary-row {
+  @apply text-gray-400;
+}
+
+.dark .cart-summary-total {
+  @apply text-gray-100;
+}
+
+.dark .modal-content {
+  @apply bg-gray-900 text-gray-100;
+}
+
+.dark .category-card {
+  @apply bg-gray-900 border-gray-800 hover:border-b-red-500;
+}
+
+.dark .category-icon-box {
+  @apply bg-red-950/30 text-red-400;
+}
+
+.dark .category-name {
+  @apply text-gray-200;
+}
+
+.dark .category-count {
+  @apply bg-gray-950 text-gray-500;
+}
+
+.dark .about-body {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .about-title {
+  @apply text-gray-100;
+}
+
+.dark .about-text {
+  @apply text-gray-400;
+}
+
+.dark .value-card {
+  @apply bg-gray-800/50 border-gray-800;
+}
+
+.dark .value-title {
+  @apply text-gray-200;
+}
+
+.dark .value-desc {
+  @apply text-gray-500;
+}
+
+.dark .faq-card {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .faq-question {
+  @apply text-gray-200;
+}
+
+.dark .faq-answer {
+  @apply text-gray-400 border-gray-800;
+}
+
+.dark .support-section {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .tracking-card {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .timeline-icon {
+  @apply bg-gray-800 text-gray-500;
+}
+
+.dark .timeline-icon-active {
+  @apply bg-red-600 text-white ring-red-950;
+}
+
+.dark .timeline-label {
+  @apply text-gray-500;
+}
+
+.dark .timeline-label-active {
+  @apply text-red-500;
+}
+
+.dark .return-success-box {
+  @apply bg-green-950/20 border-green-900/50;
+}
+
+.dark .return-success-code {
+  @apply text-green-400;
+}
+
+.checkout-layout {
+  @apply flex flex-col md:flex-row gap-8 max-w-7xl mx-auto px-4 py-8 items-start;
+}
+
+.checkout-main {
+  @apply flex-1 w-full flex flex-col gap-6;
+}
+
+.checkout-sidebar {
+  @apply w-full md:w-96 bg-white border border-gray-200 rounded-2xl p-6 shadow-xs md:sticky md:top-[120px] flex flex-col gap-4;
+}
+
+.address-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4;
+}
+
+.address-card {
+  @apply border border-gray-200 rounded-xl p-4 cursor-pointer relative bg-white transition-all flex flex-col gap-1 hover:shadow-xs;
+}
+
+.address-card-active {
+  @apply border-red-500 bg-red-50/20;
+}
+
+.address-card-actions {
+  @apply flex gap-2 mt-2 border-t border-gray-50 pt-2 justify-end;
+}
+
+.address-card-btn {
+  @apply text-xs font-semibold text-gray-500 hover:text-red-500 cursor-pointer;
+}
+
+.address-add-btn {
+  @apply border-2 border-dashed border-gray-300 rounded-xl p-6 cursor-pointer flex flex-col items-center justify-center gap-2 hover:border-red-400 text-gray-500 hover:text-red-500 bg-gray-50/20;
+}
+
+.payment-tabs {
+  @apply flex border-b border-gray-100 gap-4 mb-6;
+}
+
+.payment-tab {
+  @apply py-2.5 px-4 cursor-pointer border-b-2 border-transparent font-bold text-sm text-gray-500 transition-all;
+}
+
+.payment-tab-active {
+  @apply border-red-500 text-red-500;
+}
+
+.bank-info-container {
+  @apply flex flex-col gap-4;
+}
+
+.bank-card {
+  @apply bg-gray-50 border border-gray-100 rounded-xl p-4 flex flex-col gap-1 relative;
+}
+
+.bank-card-title {
+  @apply font-bold text-sm text-gray-900;
+}
+
+.bank-card-text {
+  @apply text-xs text-gray-600;
+}
+
+.checkout-summary-item {
+  @apply flex justify-between items-center text-sm font-semibold border-b border-gray-50 pb-3;
+}
+
+.checkout-product-img {
+  @apply w-12 h-12 rounded-lg border border-gray-100 object-contain p-1 bg-gray-50;
+}
+
+.checkout-product-title {
+  @apply font-bold text-xs text-gray-800 line-clamp-1;
+}
+
+.checkout-product-row {
+  @apply flex items-center gap-3 py-2 border-b border-gray-50;
+}
+
+.dark .checkout-sidebar {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .address-card {
+  @apply bg-gray-900 border-gray-800;
+}
+
+.dark .address-card-active {
+  @apply border-red-500 bg-red-950/20;
+}
+
+.dark .address-card-actions {
+  @apply border-gray-800;
+}
+
+.dark .address-add-btn {
+  @apply border-gray-700 bg-gray-800/10 text-gray-400 hover:text-red-400;
+}
+
+.dark .payment-tabs {
+  @apply border-gray-800;
+}
+
+.dark .payment-tab {
+  @apply text-gray-400;
+}
+
+.dark .payment-tab-active {
+  @apply text-red-400 border-red-400;
+}
+
+.dark .bank-card {
+  @apply bg-gray-950 border-gray-800;
+}
+
+.dark .bank-card-title {
+  @apply text-gray-100;
+}
+
+.dark .bank-card-text {
+  @apply text-gray-400;
+}
+
+.dark .checkout-summary-item {
+  @apply border-gray-800;
+}
+
+.dark .checkout-product-img {
+  @apply border-gray-800 bg-gray-950;
+}
+
+.dark .checkout-product-title {
+  @apply text-gray-300;
+}
+
+.dark .checkout-product-row {
+  @apply border-gray-800;
+}
