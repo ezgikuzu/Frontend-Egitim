@@ -1,0 +1,185 @@
+{
+  "customers": [
+    {
+      "id": "1",
+      "title": "Ayşe Demir",
+      "company": "Demir Teknoloji",
+      "email": "ayse@demirteknoloji.com",
+      "phone": "0555 555 5555",
+      "status": "active",
+      "group": "VIP",
+      "age": 30,
+      "gender": "Kadın",
+      "createAt": "2026-07-15",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
+    },
+    {
+      "id": "2",
+      "title": "Mehmet Yılmaz",
+      "company": "Yılmaz İnşaat",
+      "email": "mehmet@yilmazinsaat.com",
+      "phone": "0532 123 4567",
+      "status": "active",
+      "group": "Kurumsal",
+      "age": 45,
+      "gender": "Erkek",
+      "createAt": "2026-06-10",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+    },
+    {
+      "id": "3",
+      "title": "Zeynep Kaya",
+      "company": "Kaya Mimarlık",
+      "email": "zeynep@kayamimarlik.com",
+      "phone": "0544 987 6543",
+      "status": "passive",
+      "group": "VIP",
+      "age": 28,
+      "gender": "Kadın",
+      "createAt": "2026-05-20",
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150"
+    },
+    {
+      "id": "4",
+      "title": "Can Özkan",
+      "company": "Özkan Bilişim",
+      "email": "can@ozkanbilisim.com",
+      "phone": "0505 444 3322",
+      "status": "active",
+      "group": "Standart",
+      "age": 35,
+      "gender": "Erkek",
+      "createAt": "2026-07-01",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150"
+    },
+    {
+      "title": "Ahmet Kara",
+      "company": "Kara Lojistik",
+      "email": "ahmet@karalojistik.com",
+      "phone": "0532 999 8877",
+      "status": "active",
+      "group": "VIP",
+      "age": 40,
+      "gender": "Erkek",
+      "createAt": "2026-07-01",
+      "id": "pT1989iwsDg",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150"
+    },
+    {
+      "title": "Ezgi Kuzu",
+      "company": "Kara Lojistik",
+      "email": "ezgi@karalojistik.com",
+      "phone": "0532 999 8877",
+      "status": "active",
+      "group": "VIP",
+      "age": 26,
+      "gender": "Kadın",
+      "createAt": "2026-07-01",
+      "id": "ackcfXRBbTE",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150"
+    },
+    {
+      "title": "Mustafa uncu",
+      "company": "Kara Lojistik",
+      "email": "mustafa@karalojistik.com",
+      "phone": "0532 999 8877",
+      "status": "passive",
+      "group": "Kurumsal",
+      "age": 25,
+      "gender": "Erkek",
+      "createAt": "2026-07-01",
+      "id": "KGkwPbPubXg",
+      "avatar": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1",
+      "customerId": "1",
+      "text": "İlk görüşme yapıldı. CRM geçişi hakkında bilgi verildi.",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "2",
+      "customerId": "1",
+      "text": "Teklif dosyası gönderildi, geri dönüş bekleniyor.",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "3",
+      "customerId": "2",
+      "text": "Sözleşme imzalandı ve proje başlangıcı yapıldı.",
+      "date": "2026-06-12"
+    },
+    {
+      "customerId": null,
+      "text": "Ilk notIlk not",
+      "date": "2026-07-01",
+      "id": "TwQUJSnjmSQ"
+    },
+    {
+      "customerId": "3",
+      "text": "slm",
+      "date": "2026-07-01",
+      "id": "ZqDImdvTx1E"
+    },
+    {
+      "customerId": "1",
+      "text": "Yeni deneme notu",
+      "date": "2026-07-01",
+      "id": "uDLpw5vJCmU"
+    },
+    {
+      "customerId": "1",
+      "text": "Yeni deneme notu",
+      "date": "2026-07-01",
+      "id": "YsQ81qs8CgE"
+    },
+    {
+      "customerId": "1",
+      "text": "Yeni deneme notu 2",
+      "date": "2026-07-01",
+      "id": "t3uJZngMSjc"
+    },
+    {
+      "customerId": "1",
+      "text": "test note",
+      "date": "2026-07-01",
+      "id": "GfwOnL0eSrQ"
+    },
+    {
+      "customerId": "pT1989iwsDg",
+      "text": "Ahmet ile ilk not",
+      "date": "2026-07-01",
+      "id": "txGp5VtaGjo"
+    },
+    {
+      "customerId": "3",
+      "text": "dfgsdfgs",
+      "date": "2026-07-01",
+      "id": "syyyUpMj-5w"
+    }
+  ],
+  "reports": [
+    {
+      "id": "1",
+      "title": "Aylık Müşteri Raporu",
+      "totalCustomers": 4,
+      "activeCustomers": 3,
+      "passiveCustomers": 1
+    }
+  ],
+  "settings": {
+    "darkMode": false,
+    "notificationsEnabled": true
+  },
+  "users": [
+    {
+      "id": "1",
+      "name": "CRM Admin",
+      "email": "admin@crm.com",
+      "password": "password123"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
